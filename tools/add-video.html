@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>زوّد فيديو — سُنّة</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➕</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+  .f{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);
+     border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-1)}
+  .f label{font-weight:700;font-size:15px;display:grid;gap:6px}
+  .f input,.f select,.f textarea{
+     padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);
+     background:var(--surface-2);color:var(--ink);font:inherit;width:100%}
+  .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--brand);outline:none}
+  .row{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+  pre{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);
+      padding:18px;overflow:auto;direction:ltr;text-align:left;
+      font-size:13px;line-height:1.7;white-space:pre-wrap;word-break:break-all;margin:0}
+  .pv{display:flex;gap:14px;align-items:center;background:var(--surface-2);
+      border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-top:4px}
+  .pv img{width:140px;border-radius:10px;flex-shrink:0}
+  .pv div{min-width:0}
+  .pv b{display:block;font-size:15px;line-height:1.5}
+  .pv small{color:var(--ink-3)}
+  .ok{color:var(--c-emerald);font-weight:700}
+  .bad{color:var(--c-orange);font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar__in">
+  <a class="brand" href="../index.html"><span class="brand__mark">🕌</span>
+  <span class="brand__name">سُنّة</span></a>
+  <div class="topbar__sp"></div>
+  <a class="btn btn--ghost btn--sm" href="../index.html">رجوع للموقع</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero" style="padding:28px">
+    <h1>➕ زوّد فيديو</h1>
+    <p>الزق لينك اليوتيوب، ظبّط الموضوع والسن، وخد السطر الجاهز.</p>
+  </div>
+
+  <div class="f">
+    <label>لينك اليوتيوب أو الـID
+      <input id="url" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off">
+      <small id="idmsg" style="color:var(--ink-3);font-weight:400"></small>
+    </label>
+
+    <div id="preview"></div>
+
+    <label>العنوان اللي يظهر للعيال
+      <input id="title" placeholder="مثال: كُن أمينًا">
+    </label>
+
+    <label>اسم القناة
+      <input id="channel" placeholder="مثال: Omar &amp; Hana Arabic">
+    </label>
+
+    <div class="row">
+      <label>الموضوع
+        <select id="topic">
+          <optgroup label="ديني">
+            <option value="akhlaq">أخلاق ومواقف</option>
+            <option value="salah">الصلاة والوضوء</option>
+            <option value="quran">قرآن وسور</option>
+            <option value="adhkar">أذكار وأدعية</option>
+            <option value="anbiya">قصص الأنبياء</option>
+            <option value="anasheed">أناشيد</option>
+          </optgroup>
+          <optgroup label="تعليمي">
+            <option value="english">إنجليزي</option>
+            <option value="math">حساب</option>
+            <option value="arabic">عربي</option>
+            <option value="science">علوم</option>
+          </optgroup>
+        </select>
+      </label>
+      <label>اللغة
+        <select id="lang"><option value="ar">عربي</option><option value="en">إنجليزي</option></select>
+      </label>
+      <label>من سن
+        <input id="amin" type="number" min="1" max="18" value="4">
+      </label>
+      <label>لحد سن
+        <input id="amax" type="number" min="1" max="18" value="9">
+      </label>
+    </div>
+
+    <label>أسئلة بعد الفيديو (اختياري) — سطر لكل سؤال بالشكل: السؤال | الإجابة
+      <textarea id="qs" rows="4" placeholder="يعني إيه أمين؟ | اللي مش بياخد حاجة مش بتاعته
+لو لقيت حاجة؟ | أرجّعها لصاحبها"></textarea>
+    </label>
+
+    <label style="flex-direction:row;display:flex;align-items:center;gap:9px;font-weight:700">
+      <input type="checkbox" id="feat" style="width:22px;height:22px"> اعرضه في الأول (مميّز)
+    </label>
+  </div>
+
+  <div class="shead"><h2>السطر الجاهز</h2>
+    <p>انسخه وحطّه في <code>data/videos.js</code> جوّه القوسين المربّعة، وحُطّ فاصلة قبله.</p></div>
+  <pre id="out">—</pre>
+  <div class="btnrow" style="margin-top:14px">
+    <button class="btn" id="copy">📋 انسخ</button>
+    <button class="btn btn--ghost" id="check">✓ اتأكد إن الفيديو شغّال</button>
+  </div>
+  <div id="checkmsg" style="margin-top:12px"></div>
+
+  <div class="note note--warn" style="margin-top:28px">
+    <h4>⚠️ قبل ما تضيف</h4>
+    <ul>
+      <li>اتفرّج على الفيديو الأول — ولو لمح سريع. القناة الكويسة ممكن يكون فيها فيديو مش مناسب.</li>
+      <li>الفيديوهات الطويلة (مجموعات ساعة) حلوة للعربية، بس خلّي لها وقت محدّد.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="foot wrap"><p><a href="../index.html">سُنّة</a></p></footer>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+
+  function getId(s){
+    s = (s||"").trim();
+    if (/^[\w-]{11}$/.test(s)) return s;
+    var m = s.match(/(?:v=|\/embed\/|\/shorts\/|youtu\.be\/|\/live\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  function build(){
+    var id = getId($("url").value);
+    $("idmsg").textContent = id ? "✓ الـID: " + id : ($("url").value.trim() ? "مش لاقي ID في اللينك ده" : "");
+    $("preview").innerHTML = id
+      ? '<div class="pv"><img src="https://i.ytimg.com/vi/'+id+'/mqdefault.jpg" alt="">'
+        + '<div><b>معاينة الصورة</b><small>لو الصورة ظهرت، يبقى الفيديو موجود.</small></div></div>'
+      : "";
+
+    if (!id){ $("out").textContent = "—"; return; }
+
+    var o = {
+      id: id,
+      title: $("title").value.trim() || "بدون عنوان",
+      channel: $("channel").value.trim() || "",
+      section: ["english","math","arabic","science"].indexOf($("topic").value) > -1 ? "learn" : "deen",
+      topic: $("topic").value,
+      ageMin: parseInt($("amin").value,10) || 2,
+      ageMax: parseInt($("amax").value,10) || 12,
+      lang: $("lang").value
+    };
+    if ($("feat").checked) o.featured = true;
+
+    var qs = $("qs").value.split("\n").map(function(l){
+      var p = l.split("|");
+      if (p.length < 2 || !p[0].trim()) return null;
+      return { q: p[0].trim(), a: p.slice(1).join("|").trim() };
+    }).filter(Boolean);
+    if (qs.length) o.questions = qs;
+
+    $("out").textContent = "  " + JSON.stringify(o) + ",";
+  }
+
+  ["url","title","channel","topic","lang","amin","amax","qs","feat"].forEach(function(k){
+    $(k).addEventListener("input", build);
+    $(k).addEventListener("change", build);
+  });
+
+  $("copy").addEventListener("click", function(){
+    var txt = $("out").textContent;
+    if (txt === "—") return;
+    navigator.clipboard.writeText(txt).then(function(){
+      $("copy").textContent = "✓ اتنسخ";
+      setTimeout(function(){ $("copy").textContent = "📋 انسخ"; }, 1600);
+    });
+  });
+
+  $("check").addEventListener("click", function(){
+    var id = getId($("url").value);
+    var box = $("checkmsg");
+    if (!id){ box.innerHTML = '<span class="bad">حطّ لينك الأول.</span>'; return; }
+    box.textContent = "بيشوف…";
+    /* oEmbed بيرجّع العنوان واسم القناة لو الفيديو موجود وعام */
+    fetch("https://www.youtube.com/oembed?url=" +
+          encodeURIComponent("https://www.youtube.com/watch?v=" + id) + "&format=json")
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(d){
+        box.innerHTML = '<span class="ok">✓ الفيديو شغّال.</span><br>' +
+          '<small>العنوان الأصلي: ' + d.title + '<br>القناة: ' + d.author_name + '</small>';
+        if (!$("channel").value.trim()){ $("channel").value = d.author_name; build(); }
+        if (!$("title").value.trim()){ $("title").value = d.title; build(); }
+      })
+      .catch(function(){
+        box.innerHTML = '<span class="bad">مش قادر أتأكد — يا إما الفيديو مقفول/محذوف، ' +
+          'يا إما المتصفّح منع الطلب (جرّب تفتح الصفحة من سيرفر محلي).</span>';
+      });
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>

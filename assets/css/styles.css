@@ -1,0 +1,683 @@
+/* ============================================================
+   سُنّة  —  styles.css
+   تصميم عربي من اليمين للشمال، للأطفال، ويشتغل على الموبايل
+   ============================================================ */
+
+/* ---------- 1. التوكنز ---------- */
+:root{
+  /* خلفيات وأسطح */
+  --bg:#fbf7ef;
+  --bg-2:#f3ece0;
+  --surface:#ffffff;
+  --surface-2:#fdfaf4;
+  --line:#e7ddcb;
+  --line-strong:#d6c8ad;
+
+  /* نصوص */
+  --ink:#1d2a33;
+  --ink-2:#4b5c68;
+  --ink-3:#7c8c99;
+
+  /* الهوية */
+  --brand:#0e6f66;
+  --brand-ink:#08403c;
+  --brand-soft:#dff0ed;
+  --gold:#c88a1e;
+  --gold-soft:#fbeed2;
+
+  /* ألوان المواضيع */
+  --c-teal:#0e6f66;    --c-teal-soft:#ddf0ed;
+  --c-emerald:#15785a; --c-emerald-soft:#dcf2e8;
+  --c-amber:#b67611;   --c-amber-soft:#fbeed0;
+  --c-violet:#6d4aa8;  --c-violet-soft:#ebe2fb;
+  --c-orange:#c05f1c;  --c-orange-soft:#fde5d2;
+  --c-rose:#b73f61;    --c-rose-soft:#fbe0e8;
+  --c-sky:#1668a8;     --c-sky-soft:#dcecfa;
+  --c-indigo:#434ba0;  --c-indigo-soft:#e3e5fb;
+  --c-lime:#5f7a14;    --c-lime-soft:#eaf3cf;
+  --c-cyan:#0b6f84;    --c-cyan-soft:#d8f0f5;
+
+  /* مقاسات */
+  --r-sm:12px; --r:18px; --r-lg:26px; --r-xl:34px;
+  --sh-1:0 1px 2px rgba(29,42,51,.06), 0 2px 8px rgba(29,42,51,.05);
+  --sh-2:0 2px 6px rgba(29,42,51,.07), 0 10px 26px rgba(29,42,51,.08);
+  --sh-3:0 10px 40px rgba(29,42,51,.14);
+  --gutter:16px;
+  --maxw:1120px;
+  --tap:48px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121a20;
+    --bg-2:#0d1418;
+    --surface:#1b252c;
+    --surface-2:#202c34;
+    --line:#2d3b45;
+    --line-strong:#3c4d59;
+    --ink:#eef3f6;
+    --ink-2:#b4c3cd;
+    --ink-3:#8498a5;
+    --brand:#3fbfae;
+    --brand-ink:#9fe5da;
+    --brand-soft:#17332f;
+    --gold:#e4b354;
+    --gold-soft:#362911;
+    --c-teal:#3fbfae;    --c-teal-soft:#153430;
+    --c-emerald:#48c495; --c-emerald-soft:#13332a;
+    --c-amber:#e0ac4d;   --c-amber-soft:#342711;
+    --c-violet:#a98ae0;  --c-violet-soft:#241d38;
+    --c-orange:#e89257;  --c-orange-soft:#3a2314;
+    --c-rose:#eb8099;    --c-rose-soft:#38161f;
+    --c-sky:#5aacea;     --c-sky-soft:#12283a;
+    --c-indigo:#8b93e8;  --c-indigo-soft:#1d2040;
+    --c-lime:#a8c95a;    --c-lime-soft:#242e12;
+    --c-cyan:#45b6cf;    --c-cyan-soft:#0f2e36;
+    --sh-1:0 1px 2px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.24);
+    --sh-2:0 2px 6px rgba(0,0,0,.32), 0 10px 26px rgba(0,0,0,.3);
+    --sh-3:0 10px 40px rgba(0,0,0,.45);
+  }
+}
+
+:root[data-theme="dark"]{
+  --bg:#121a20;
+  --bg-2:#0d1418;
+  --surface:#1b252c;
+  --surface-2:#202c34;
+  --line:#2d3b45;
+  --line-strong:#3c4d59;
+  --ink:#eef3f6;
+  --ink-2:#b4c3cd;
+  --ink-3:#8498a5;
+  --brand:#3fbfae;
+  --brand-ink:#9fe5da;
+  --brand-soft:#17332f;
+  --gold:#e4b354;
+  --gold-soft:#362911;
+  --c-teal:#3fbfae;    --c-teal-soft:#153430;
+  --c-emerald:#48c495; --c-emerald-soft:#13332a;
+  --c-amber:#e0ac4d;   --c-amber-soft:#342711;
+  --c-violet:#a98ae0;  --c-violet-soft:#241d38;
+  --c-orange:#e89257;  --c-orange-soft:#3a2314;
+  --c-rose:#eb8099;    --c-rose-soft:#38161f;
+  --c-sky:#5aacea;     --c-sky-soft:#12283a;
+  --c-indigo:#8b93e8;  --c-indigo-soft:#1d2040;
+  --c-lime:#a8c95a;    --c-lime-soft:#242e12;
+  --c-cyan:#45b6cf;    --c-cyan-soft:#0f2e36;
+  --sh-1:0 1px 2px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.24);
+  --sh-2:0 2px 6px rgba(0,0,0,.32), 0 10px 26px rgba(0,0,0,.3);
+  --sh-3:0 10px 40px rgba(0,0,0,.45);
+}
+
+/* ---------- 2. الأساسيات ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Tajawal","Cairo",-apple-system,"SF Arabic","Segoe UI",system-ui,sans-serif;
+  font-size:17px; line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{
+  font-family:"Baloo Bhaijaan 2","Tajawal",system-ui,sans-serif;
+  line-height:1.35; margin:0; font-weight:700; letter-spacing:0;
+}
+h1{font-size:clamp(26px,5.2vw,40px)}
+h2{font-size:clamp(21px,3.6vw,28px)}
+h3{font-size:clamp(18px,2.6vw,21px)}
+p{margin:0 0 .85em}
+p:last-child{margin-bottom:0}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
+::selection{background:var(--brand);color:#fff}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 3. الهيدر ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid var(--line);
+}
+.topbar__in{
+  max-width:var(--maxw);margin:0 auto;padding:10px var(--gutter);
+  display:flex;align-items:center;gap:10px;min-height:62px;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand__mark{
+  width:40px;height:40px;border-radius:13px;flex-shrink:0;
+  background:linear-gradient(145deg,var(--brand),var(--brand-ink));
+  display:grid;place-items:center;font-size:21px;
+  box-shadow:0 3px 10px color-mix(in srgb,var(--brand) 35%,transparent);
+}
+.brand__name{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:21px;font-weight:700;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.topbar__sp{flex:1}
+
+.iconbtn{
+  min-width:var(--tap);min-height:var(--tap);
+  display:inline-grid;place-items:center;gap:4px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;font-size:18px;padding:0 12px;
+  transition:transform .12s, box-shadow .15s, background .15s;
+}
+.iconbtn:hover{box-shadow:var(--sh-1);transform:translateY(-1px)}
+.iconbtn:active{transform:translateY(0) scale(.97)}
+
+.whochip{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:99px;padding:6px 14px 6px 8px;min-height:44px;
+  font-weight:600;font-size:15px;
+  transition:box-shadow .15s,transform .12s;
+}
+.whochip:hover{box-shadow:var(--sh-1);transform:translateY(-1px)}
+.whochip__av{
+  width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  font-size:18px;background:var(--brand-soft);flex-shrink:0;
+}
+.whochip__age{color:var(--ink-3);font-size:13px;font-weight:500}
+
+/* ---------- 4. البانر ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  border-radius:var(--r-xl);
+  background:linear-gradient(150deg,var(--brand-ink),var(--brand) 60%,#14897c);
+  color:#fff;padding:clamp(26px,5vw,48px);margin:18px 0 26px;
+  box-shadow:var(--sh-2);
+}
+/* نجمة إسلامية بسيطة بالـCSS كخلفية */
+.hero::before{
+  content:"";position:absolute;inset:0;opacity:.17;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(45deg,  rgba(255,255,255,.55) 0 1.5px, transparent 1.5px 34px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.55) 0 1.5px, transparent 1.5px 34px),
+    repeating-linear-gradient(0deg,   rgba(255,255,255,.3) 0 1.5px, transparent 1.5px 34px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,.3) 0 1.5px, transparent 1.5px 34px);
+}
+.hero::after{
+  content:"";position:absolute;
+  inset-inline-start:-90px;top:-110px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.26),transparent 68%);
+  pointer-events:none;
+}
+.hero > *{position:relative}
+.hero h1{color:#fff;margin-bottom:8px}
+.hero p{color:rgba(255,255,255,.9);max-width:54ch;font-size:clamp(15px,2vw,18px)}
+
+/* ---------- 5. العناوين ---------- */
+.shead{display:flex;align-items:flex-end;gap:12px;margin:34px 0 14px;flex-wrap:wrap}
+.shead h2{flex:1;min-width:200px}
+.shead p{color:var(--ink-2);font-size:15px;margin:0;width:100%}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:700;letter-spacing:.03em;
+  color:var(--brand);background:var(--brand-soft);
+  padding:5px 12px;border-radius:99px;margin-bottom:10px;
+}
+
+/* ---------- 6. الشبكات ---------- */
+.grid{display:grid;gap:14px}
+.grid--2{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.grid--3{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+.grid--v{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.grid--wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+
+/* ---------- 7. الكروت ---------- */
+.card{
+  display:block;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:20px;box-shadow:var(--sh-1);color:inherit;
+  transition:transform .16s cubic-bezier(.2,.8,.3,1), box-shadow .18s, border-color .18s;
+  position:relative;overflow:hidden;
+}
+a.card:hover,button.card:hover{
+  transform:translateY(-3px);box-shadow:var(--sh-2);
+  border-color:var(--line-strong);text-decoration:none;
+}
+a.card:active,button.card:active{transform:translateY(-1px) scale(.994)}
+.card__ico{
+  width:56px;height:56px;border-radius:18px;display:grid;place-items:center;
+  font-size:28px;margin-bottom:14px;background:var(--brand-soft);
+}
+.card h3{margin-bottom:5px}
+.card__sub{color:var(--ink-2);font-size:14.5px;line-height:1.6}
+.card__meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin-top:13px;font-size:13px;color:var(--ink-3);
+}
+
+/* كرت قسم كبير */
+.bigcard{padding:clamp(22px,3.5vw,34px);border-radius:var(--r-xl);text-align:start}
+.bigcard .card__ico{width:72px;height:72px;border-radius:24px;font-size:38px}
+.bigcard h2{margin-bottom:6px}
+
+/* تلوين الكروت حسب الموضوع */
+.t-teal    .card__ico{background:var(--c-teal-soft);   color:var(--c-teal)}
+.t-emerald .card__ico{background:var(--c-emerald-soft);color:var(--c-emerald)}
+.t-amber   .card__ico{background:var(--c-amber-soft);  color:var(--c-amber)}
+.t-violet  .card__ico{background:var(--c-violet-soft); color:var(--c-violet)}
+.t-orange  .card__ico{background:var(--c-orange-soft); color:var(--c-orange)}
+.t-rose    .card__ico{background:var(--c-rose-soft);   color:var(--c-rose)}
+.t-sky     .card__ico{background:var(--c-sky-soft);    color:var(--c-sky)}
+.t-indigo  .card__ico{background:var(--c-indigo-soft); color:var(--c-indigo)}
+.t-lime    .card__ico{background:var(--c-lime-soft);   color:var(--c-lime)}
+.t-cyan    .card__ico{background:var(--c-cyan-soft);   color:var(--c-cyan)}
+.t-teal::after,.t-emerald::after,.t-amber::after,.t-violet::after,.t-orange::after,
+.t-rose::after,.t-sky::after,.t-indigo::after,.t-lime::after,.t-cyan::after{
+  content:"";position:absolute;inset-block-start:0;inset-inline:0;height:4px;
+}
+.t-teal::after{background:var(--c-teal)}
+.t-emerald::after{background:var(--c-emerald)}
+.t-amber::after{background:var(--c-amber)}
+.t-violet::after{background:var(--c-violet)}
+.t-orange::after{background:var(--c-orange)}
+.t-rose::after{background:var(--c-rose)}
+.t-sky::after{background:var(--c-sky)}
+.t-indigo::after{background:var(--c-indigo)}
+.t-lime::after{background:var(--c-lime)}
+.t-cyan::after{background:var(--c-cyan)}
+
+/* ---------- 8. كرت فيديو ---------- */
+.vcard{
+  display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--sh-1);color:inherit;
+  transition:transform .16s cubic-bezier(.2,.8,.3,1),box-shadow .18s;
+}
+.vcard:hover{transform:translateY(-3px);box-shadow:var(--sh-2);text-decoration:none}
+.vcard:active{transform:translateY(-1px) scale(.994)}
+.vcard__thumb{
+  position:relative;aspect-ratio:16/9;background:var(--bg-2);overflow:hidden;
+}
+.vcard__thumb img{width:100%;height:100%;object-fit:cover}
+.vcard__play{
+  position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(to top,rgba(0,0,0,.42),rgba(0,0,0,.04) 55%);
+  opacity:0;transition:opacity .2s;
+}
+.vcard:hover .vcard__play,.vcard:focus-visible .vcard__play{opacity:1}
+.vcard__play span{
+  width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.95);
+  display:grid;place-items:center;font-size:22px;color:#111;padding-inline-start:3px;
+  box-shadow:0 4px 18px rgba(0,0,0,.3);
+}
+.vcard__body{padding:13px 15px 15px;display:flex;flex-direction:column;gap:5px;flex:1}
+.vcard__title{font-weight:700;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.vcard__ch{font-size:12.5px;color:var(--ink-3);display:flex;align-items:center;gap:5px}
+.vcard__ch span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vcard__tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:9px}
+
+/* ---------- 9. التاجات والفلاتر ---------- */
+.tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;padding:3px 9px;border-radius:8px;
+  background:var(--bg-2);color:var(--ink-2);border:1px solid var(--line);
+}
+.tag--ar{background:var(--c-teal-soft);color:var(--c-teal);border-color:transparent}
+.tag--en{background:var(--c-sky-soft);color:var(--c-sky);border-color:transparent}
+.tag--q{background:var(--gold-soft);color:var(--gold);border-color:transparent}
+.tag--star{background:var(--c-amber-soft);color:var(--c-amber);border-color:transparent}
+
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 20px}
+.chip{
+  min-height:42px;padding:0 16px;border-radius:99px;
+  background:var(--surface);border:1.5px solid var(--line);
+  font-size:14.5px;font-weight:600;color:var(--ink-2);
+  display:inline-flex;align-items:center;gap:7px;
+  transition:all .15s;
+}
+.chip:hover{border-color:var(--brand);color:var(--brand)}
+.chip[aria-pressed="true"]{
+  background:var(--brand);border-color:var(--brand);color:#fff;
+  box-shadow:0 2px 10px color-mix(in srgb,var(--brand) 32%,transparent);
+}
+
+/* ---------- 10. المشغّل ---------- */
+.player{
+  position:relative;aspect-ratio:16/9;width:100%;
+  background:#000;border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--sh-3);
+}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player__note{
+  margin-top:12px;font-size:13.5px;color:var(--ink-3);
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+}
+
+/* ---------- 11. أسئلة بعد الفيديو ---------- */
+.qa{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-1);
+}
+.qa__hd{
+  padding:18px 20px;background:var(--gold-soft);
+  border-bottom:1px solid var(--line);
+}
+.qa__hd h3{color:var(--ink);margin-bottom:3px}
+.qa__hd p{font-size:14px;color:var(--ink-2);margin:0}
+.qa details{border-bottom:1px solid var(--line)}
+.qa details:last-child{border-bottom:0}
+.qa summary{
+  padding:16px 20px;cursor:pointer;font-weight:700;font-size:16px;
+  display:flex;align-items:flex-start;gap:11px;min-height:var(--tap);
+  list-style:none;transition:background .15s;
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:hover{background:var(--surface-2)}
+.qa summary::before{
+  content:"؟";flex-shrink:0;
+  width:28px;height:28px;border-radius:9px;background:var(--gold-soft);
+  color:var(--gold);display:grid;place-items:center;font-size:16px;font-weight:800;
+}
+.qa details[open] summary{background:var(--surface-2)}
+.qa__a{padding:0 20px 18px 59px;color:var(--ink-2);font-size:15.5px}
+
+/* ---------- 12. خطوات (وضوء/صلاة) ---------- */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+.step{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh-1);
+}
+.step__n{
+  flex-shrink:0;width:44px;height:44px;border-radius:14px;
+  background:var(--brand-soft);color:var(--brand);
+  display:grid;place-items:center;font-size:22px;
+  position:relative;
+}
+.step__n b{
+  position:absolute;inset-block-end:-5px;inset-inline-start:-5px;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--brand);color:#fff;font-size:11.5px;
+  display:grid;place-items:center;font-weight:800;
+  border:2px solid var(--surface);
+}
+.step__body{flex:1;min-width:0}
+.step__body h4{font-size:17px;margin-bottom:3px}
+.step__body p{font-size:15px;color:var(--ink-2);margin:0}
+.step__say{
+  margin-top:10px;padding:12px 15px;border-radius:var(--r-sm);
+  background:var(--brand-soft);border-inline-start:4px solid var(--brand);
+  font-family:"Baloo Bhaijaan 2",serif;font-size:18px;line-height:1.95;
+  color:var(--brand-ink);font-weight:600;
+}
+:root[data-theme="dark"] .step__say{color:var(--brand-ink)}
+.step__times{
+  display:inline-block;margin-top:9px;font-size:12.5px;font-weight:700;
+  background:var(--gold-soft);color:var(--gold);padding:3px 10px;border-radius:8px;
+}
+.step.done{border-color:var(--c-emerald);background:var(--c-emerald-soft)}
+.step.done .step__n{background:var(--c-emerald);color:#fff}
+
+/* ---------- 13. آيات ---------- */
+.ayat{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:clamp(20px,4vw,34px);box-shadow:var(--sh-1);
+  position:relative;overflow:hidden;
+}
+.ayat::before{
+  content:"";position:absolute;inset-block-start:0;inset-inline:0;height:5px;
+  background:linear-gradient(90deg,var(--gold),var(--brand));
+}
+.ayah{
+  font-family:"Baloo Bhaijaan 2","Tajawal",serif;
+  font-size:clamp(20px,3.4vw,27px);line-height:2.5;
+  text-align:center;color:var(--ink);
+  padding:12px 0;border-bottom:1px dashed var(--line);
+}
+.ayah:last-child{border-bottom:0}
+.ayah__n{
+  display:inline-grid;place-items:center;
+  width:30px;height:30px;margin-inline-start:9px;
+  font-family:"Tajawal",sans-serif;font-size:13px;font-weight:700;
+  color:var(--gold);background:var(--gold-soft);border-radius:50%;
+  vertical-align:middle;
+}
+.basmala{
+  text-align:center;font-family:"Baloo Bhaijaan 2",serif;
+  font-size:clamp(18px,2.8vw,23px);color:var(--brand);
+  padding-bottom:14px;margin-bottom:8px;border-bottom:1px solid var(--line);
+}
+
+/* ---------- 14. الأذكار ---------- */
+.dhikr{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh-1);
+  display:flex;flex-direction:column;gap:11px;
+}
+.dhikr__when{
+  font-size:13px;font-weight:700;color:var(--c-violet);
+  background:var(--c-violet-soft);align-self:flex-start;
+  padding:4px 11px;border-radius:8px;
+}
+.dhikr__ar{
+  font-family:"Baloo Bhaijaan 2","Tajawal",serif;
+  font-size:clamp(18px,2.6vw,21px);line-height:2.15;color:var(--ink);font-weight:600;
+}
+.dhikr__m{
+  font-size:14.5px;color:var(--ink-2);
+  padding-inline-start:13px;border-inline-start:3px solid var(--line-strong);
+}
+.dhikr__s{font-size:12.5px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+
+/* ---------- 15. جدول متابعة الصلاة ---------- */
+.tracker{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-1);
+}
+.tracker__row{
+  display:flex;align-items:center;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+.tracker__row:last-child{border-bottom:0}
+.tracker__name{flex:1;display:flex;align-items:center;gap:11px;min-width:0}
+.tracker__name b{font-size:17px;font-family:"Baloo Bhaijaan 2",sans-serif}
+.tracker__name small{display:block;color:var(--ink-3);font-size:12.5px;font-weight:400}
+.tracker__em{font-size:26px;flex-shrink:0}
+.tick{
+  width:var(--tap);height:var(--tap);border-radius:15px;flex-shrink:0;
+  background:var(--bg-2);border:2px solid var(--line);
+  display:grid;place-items:center;font-size:22px;color:transparent;
+  transition:all .18s cubic-bezier(.2,.8,.3,1);
+}
+.tick:hover{border-color:var(--c-emerald);transform:scale(1.05)}
+.tick[aria-pressed="true"]{
+  background:var(--c-emerald);border-color:var(--c-emerald);color:#fff;
+  box-shadow:0 3px 12px color-mix(in srgb,var(--c-emerald) 38%,transparent);
+}
+.streak{
+  display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;
+  border-top:2px dashed var(--line);font-weight:700;
+}
+.streak__n{
+  font-family:"Baloo Bhaijaan 2",sans-serif;font-size:30px;color:var(--gold);line-height:1;
+}
+
+/* ---------- 16. النجوم ---------- */
+.stars{display:flex;align-items:center;gap:5px;font-size:15px}
+.stars b{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:19px;color:var(--gold)}
+
+/* ---------- 17. صناديق الكلام ---------- */
+.note{
+  border-radius:var(--r);padding:17px 20px;font-size:15.5px;
+  border:1px solid var(--line);background:var(--surface-2);
+  border-inline-start:5px solid var(--brand);
+}
+.note h4{margin-bottom:7px;font-size:16.5px;display:flex;align-items:center;gap:8px}
+.note ul{margin:0;padding-inline-start:20px}
+.note li{margin-bottom:7px}
+.note li:last-child{margin-bottom:0}
+.note--parent{border-inline-start-color:var(--c-violet);background:var(--c-violet-soft)}
+.note--gold{border-inline-start-color:var(--gold);background:var(--gold-soft)}
+.note--warn{border-inline-start-color:var(--c-orange);background:var(--c-orange-soft)}
+
+.proof{
+  background:linear-gradient(145deg,var(--brand-soft),var(--surface-2));
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(20px,3.5vw,28px);text-align:center;position:relative;
+}
+.proof__q{
+  font-family:"Baloo Bhaijaan 2",serif;
+  font-size:clamp(19px,3vw,25px);line-height:2.1;color:var(--brand-ink);font-weight:600;
+}
+:root[data-theme="dark"] .proof__q{color:var(--brand-ink)}
+.proof__s{margin-top:11px;font-size:13.5px;color:var(--ink-3);font-weight:600}
+.proof__kind{
+  display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;
+  color:var(--gold);background:var(--gold-soft);
+  padding:4px 12px;border-radius:99px;margin-bottom:14px;
+}
+
+.rule{
+  display:flex;gap:14px;align-items:center;
+  background:var(--gold-soft);border-radius:var(--r-lg);
+  padding:18px 22px;border:1px solid var(--line);
+}
+.rule__ic{font-size:32px;flex-shrink:0}
+.rule p{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:clamp(17px,2.4vw,20px);
+  line-height:1.75;margin:0;color:var(--ink);font-weight:600}
+
+/* ---------- 18. القصة ---------- */
+.story{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:clamp(20px,4vw,34px);box-shadow:var(--sh-1);
+}
+.story h3{margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.story p{font-size:clamp(16.5px,2.2vw,18.5px);line-height:2.05;color:var(--ink)}
+/* ملحوظة: مفيش drop cap هنا عن قصد — في العربي بيفصل أول حرف
+   عن باقي الكلمة ويكسر وصل الحروف («مريم» بتبقى «م» + «ريم»).
+   بدالها بنميّز أول فقرة بحجم أكبر شوية. */
+.story p:first-of-type{
+  font-size:clamp(17.5px,2.4vw,20px);
+  color:var(--ink);font-weight:500;
+  padding-inline-start:16px;
+  border-inline-start:4px solid var(--brand);
+}
+
+/* ---------- 19. اختيار الطفل ---------- */
+.who{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))}
+.whocard{
+  background:var(--surface);border:2px solid var(--line);border-radius:var(--r-lg);
+  padding:24px 16px;text-align:center;box-shadow:var(--sh-1);
+  transition:transform .16s cubic-bezier(.2,.8,.3,1),box-shadow .18s,border-color .18s;
+}
+.whocard:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--sh-2);border-color:var(--brand)}
+.whocard__av{
+  width:76px;height:76px;margin:0 auto 12px;border-radius:50%;
+  display:grid;place-items:center;font-size:40px;background:var(--brand-soft);
+}
+.whocard b{display:block;font-family:"Baloo Bhaijaan 2",sans-serif;font-size:20px}
+.whocard small{color:var(--ink-3);font-size:13.5px}
+.whocard[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
+
+/* ---------- 19ب. قفل أوضة الأب والأم ---------- */
+.gate{
+  max-width:430px;margin:48px auto;text-align:center;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-xl);padding:clamp(28px,5vw,42px);
+  box-shadow:var(--sh-2);
+}
+.gate__lock{font-size:52px;line-height:1;margin-bottom:14px}
+.gate h2{margin-bottom:6px}
+.gate > p{color:var(--ink-2);font-size:15.5px;margin-bottom:22px}
+.gate__q{
+  font-family:"Baloo Bhaijaan 2",sans-serif;
+  font-size:clamp(34px,7vw,46px);font-weight:700;
+  color:var(--brand);background:var(--brand-soft);
+  padding:18px 20px;border-radius:var(--r-lg);margin-bottom:20px;
+  letter-spacing:.04em;
+}
+.gate__form{display:flex;gap:10px;flex-wrap:wrap}
+.gate__form input{
+  flex:1;min-width:120px;min-height:var(--tap);
+  padding:0 18px;border-radius:99px;
+  border:1.5px solid var(--line);background:var(--surface-2);
+  color:var(--ink);font:inherit;font-size:19px;font-weight:700;
+  text-align:center;
+}
+.gate__form input:focus{border-color:var(--brand);outline:none}
+.gate__err{
+  margin-top:14px;padding:11px 16px;border-radius:var(--r-sm);
+  background:var(--c-orange-soft);color:var(--c-orange);
+  font-weight:700;font-size:14.5px;
+}
+.gate__back{
+  display:inline-block;margin-top:20px;
+  color:var(--ink-3);font-size:14px;font-weight:600;
+}
+
+/* ---------- 20. أزرار ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:var(--tap);padding:0 24px;border-radius:99px;
+  background:var(--brand);color:#fff;border:0;font-weight:700;font-size:16px;
+  box-shadow:0 3px 14px color-mix(in srgb,var(--brand) 32%,transparent);
+  transition:transform .13s,box-shadow .17s,filter .15s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px color-mix(in srgb,var(--brand) 40%,transparent);text-decoration:none;filter:brightness(1.06)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn--ghost{
+  background:var(--surface);color:var(--ink);
+  border:1.5px solid var(--line);box-shadow:var(--sh-1);
+}
+.btn--ghost:hover{border-color:var(--brand);color:var(--brand);box-shadow:var(--sh-2)}
+.btn--gold{background:var(--gold);box-shadow:0 3px 14px color-mix(in srgb,var(--gold) 34%,transparent)}
+.btn--sm{min-height:40px;padding:0 17px;font-size:14.5px}
+.btnrow{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
+
+/* ---------- 21. تنقّل ---------- */
+.crumbs{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin:18px 0 6px;font-size:14px;color:var(--ink-3);
+}
+.crumbs a{color:var(--ink-2);font-weight:600}
+.crumbs span{opacity:.5}
+
+.empty{
+  text-align:center;padding:52px 20px;color:var(--ink-2);
+  background:var(--surface);border:2px dashed var(--line-strong);border-radius:var(--r-lg);
+}
+.empty__ic{font-size:50px;margin-bottom:12px}
+
+/* ---------- 22. الفوتر ---------- */
+.foot{
+  margin-top:56px;padding:28px 0 40px;
+  border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:14px;text-align:center;
+}
+.foot a{color:var(--ink-2)}
+
+/* ---------- 23. حركة ---------- */
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+.anim{animation:pop .3s cubic-bezier(.2,.8,.3,1) both}
+@keyframes jump{0%,100%{transform:none}30%{transform:scale(1.28) rotate(-9deg)}60%{transform:scale(.94)}}
+.jump{animation:jump .45s ease}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ---------- 24. الموبايل ---------- */
+@media (max-width:620px){
+  body{font-size:16.5px}
+  .brand__name{display:none}
+  .hero{border-radius:var(--r-lg);margin-top:12px}
+  .card{padding:17px}
+  .qa__a{padding-inline:20px 20px}
+  .step{padding:14px}
+  .step__n{width:40px;height:40px;font-size:19px}
+  .tracker__row{gap:8px}
+  .whochip__age{display:none}
+}
+@media print{
+  .topbar,.btnrow,.player,.foot{display:none}
+  body{background:#fff}
+}

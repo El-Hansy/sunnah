@@ -1,0 +1,5 @@
+# ملفات JSON المولّدة — بتتعمل بـ node tools/export-json.mjs
+data/export/
+
+# نظام ماك
+.DS_Store
