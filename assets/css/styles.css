@@ -112,9 +112,13 @@
 /* ---------- 2. الأساسيات ---------- */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+html{background:var(--bg)}
 body{
   margin:0;
   background:var(--bg);
+  /* الآيباد: ميخلّيش الضغطتين السريعتين يعملوا زووم، والضغط ميعملش فلاش أزرق */
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
   color:var(--ink);
   font-family:"Tajawal","Cairo",-apple-system,"SF Arabic","Segoe UI",system-ui,sans-serif;
   font-size:17px; line-height:1.75;
@@ -137,12 +141,19 @@ button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
 ::selection{background:var(--brand);color:#fff}
 
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.wrap{
+  max-width:var(--maxw);margin:0 auto;
+  padding-inline:
+    max(var(--gutter), env(safe-area-inset-right, 0px))
+    max(var(--gutter), env(safe-area-inset-left, 0px));
+}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- 3. الهيدر ---------- */
 .topbar{
   position:sticky;top:0;z-index:50;
+  /* فوق: شريط الحالة في وضع التطبيق على الآيفون/الآيباد */
+  padding-top:env(safe-area-inset-top, 0px);
   background:color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter:blur(14px) saturate(1.3);
   border-bottom:1px solid var(--line);
@@ -650,13 +661,20 @@ a.card:active,button.card:active{transform:translateY(-1px) scale(.994)}
 
 /* ---------- 22. الفوتر ---------- */
 .foot{
-  margin-top:56px;padding:28px 0 40px;
+  margin-top:56px;
+  padding:28px 0 calc(40px + env(safe-area-inset-bottom, 0px));
   border-top:1px solid var(--line);
   color:var(--ink-3);font-size:14px;text-align:center;
 }
 .foot a{color:var(--ink-2)}
 
 /* ---------- 23. حركة ---------- */
+/* ---------- 23ب. وضع التطبيق (الشاشة الرئيسية) ---------- */
+@media (display-mode:standalone){
+  /* مفيش شريط عنوان، فبنزوّد شوية راحة فوق */
+  .topbar__in{min-height:56px}
+}
+
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
 .anim{animation:pop .3s cubic-bezier(.2,.8,.3,1) both}
 @keyframes jump{0%,100%{transform:none}30%{transform:scale(1.28) rotate(-9deg)}60%{transform:scale(.94)}}

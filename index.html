@@ -7,7 +7,18 @@
 <meta name="description" content="مجمّع محتوى ديني وتعليمي للأطفال: مواقف وأخلاق، الصلاة والوضوء خطوة بخطوة، أذكار وأدعية، سور قصيرة، ومكتبة فيديوهات مختارة بالعمر.">
 <meta name="theme-color" content="#0e6f66" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121a20" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+<!-- أيقونات -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+
+<!-- تطبيق على الشاشة الرئيسية (آيفون / آيباد / أندرويد) -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="سُنّة">
+<!-- يمنع آيفون إنه يحوّل الأرقام للينكات تليفون -->
+<meta name="format-detection" content="telephone=no">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,5 +58,16 @@
 <!-- المنطق -->
 <script src="assets/js/store.js"></script>
 <script src="assets/js/app.js"></script>
+
+<!-- التشغيل من غير نت -->
+<script>
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {
+        /* مش مشكلة — الموقع بيشتغل عادي من غيره */
+      });
+    });
+  }
+</script>
 </body>
 </html>

@@ -898,7 +898,8 @@
   function toast(msg) {
     var t = document.createElement("div");
     t.textContent = msg;
-    t.style.cssText = "position:fixed;inset-block-end:22px;inset-inline:0;margin:auto;width:max-content;" +
+    t.style.cssText = "position:fixed;inset-block-end:calc(22px + env(safe-area-inset-bottom, 0px));" +
+      "inset-inline:0;margin:auto;width:max-content;" +
       "max-width:calc(100% - 32px);background:var(--ink);color:var(--bg);padding:13px 22px;" +
       "border-radius:99px;font-weight:700;z-index:999;box-shadow:var(--sh-3);animation:pop .25s both";
     document.body.appendChild(t);

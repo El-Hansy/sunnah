@@ -1,0 +1,25 @@
+{
+  "name": "سُنّة — محتوى ديني وتعليمي للأطفال",
+  "short_name": "سُنّة",
+  "description": "مواقف وأخلاق، الصلاة خطوة بخطوة، أذكار وأدعية، سور قصيرة، ومكتبة فيديوهات مختارة بالعمر.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fbf7ef",
+  "theme_color": "#0e6f66",
+  "categories": ["education", "kids"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png",  "sizes": "192x192",   "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png",  "sizes": "512x512",   "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png",  "sizes": "512x512",   "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon-1024.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "الصلاة والوضوء", "url": "./#/prayer",  "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "مواقف وأخلاق",   "url": "./#/manners", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "أذكار وأدعية",   "url": "./#/adhkar",  "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
