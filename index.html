@@ -61,7 +61,14 @@
 
 <!-- التشغيل من غير نت -->
 <script>
-  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  /* الـService Worker بيحتاج «سياق آمن»: HTTPS أو localhost.
+     يعني:
+       ✓ https://el-hansy.github.io/sunnah/   → شغّال، بيخزّن للأوفلاين
+       ✓ http://localhost:4173                → شغّال
+       ✗ http://192.168.0.30:4173             → مش شغّال (HTTP على الشبكة)
+     لو مش شغّال، الموقع بيشتغل عادي — بس من غير أوفلاين.
+     ده قرار المتصفّح مش قرارنا. */
+  if ("serviceWorker" in navigator && window.isSecureContext) {
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js").catch(function () {
         /* مش مشكلة — الموقع بيشتغل عادي من غيره */
